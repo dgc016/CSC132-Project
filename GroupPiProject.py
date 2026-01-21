@@ -2,6 +2,7 @@
 from gpiozero import MotionSensor
 from time import sleep
 import RPi.GPIO as GPIO
+import TwilioIntegration
 
 
 
@@ -19,7 +20,8 @@ motionSensor = MotionSensor(sensorpin)
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(ledpin,GPIO.OUT)
-
+phoneNumber = input(print("Please enter your number, include your country code, eg +15558269383:")) 
+TwilioIntegration.text(phoneNumber)
              
 
 try:
