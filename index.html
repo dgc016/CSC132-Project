@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartMail Box System</title>
+    
+    <!-- Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="app-container">
+        
+        <!-- Header -->
+        <header id="app-header" style="display: none;">
+            <div class="brand">
+                <i class="fa-solid fa-box-open"></i> SmartMail
+            </div>
+            <div class="user-info">
+                <span id="header-phone-num"></span>
+                <button class="settings-btn" id="open-settings">
+                    <i class="fa-solid fa-gear"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- Onboarding / Setup View -->
+        <section id="onboarding-view" class="view active">
+            <div class="onboarding-icon">
+                <i class="fa-solid fa-paper-plane"></i>
+            </div>
+            <h1>Welcome to SmartMail</h1>
+            <p class="subtitle">Enter your registered mobile number to connect your SmartBox and receive package notifications instantly.</p>
+            
+            <form id="setup-form">
+                <div class="input-group">
+                    <label for="phone-input">Mobile Number</label>
+                    <input type="number" id="phone-input" placeholder="e.g. 1234567890" required>
+                </div>
+                <button type="submit" class="btn">
+                    Connect System <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </form>
+        </section>
+
+        <!-- Dashboard View -->
+        <section id="dashboard-view" class="view">
+            
+            <!-- Statistics -->
+            <div class="stats-grid">
+                <div class="stat-card main">
+                    <div class="stat-value" id="stat-total">0</div>
+                    <div class="stat-label">Total Packages</div>
+                    <i class="fa-solid fa-boxes-stacked stat-icon"></i>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="stat-week">0</div>
+                    <div class="stat-label">This Week</div>
+                    <i class="fa-solid fa-calendar-week stat-icon"></i>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="stat-pending">0</div>
+                    <div class="stat-label">Unopened</div>
+                    <i class="fa-solid fa-lock stat-icon"></i>
+                </div>
+            </div>
+
+            <!-- Notifications Feed -->
+            <div class="section-header">
+                <h2 class="section-title">Notifications</h2>
+                <button class="filter-btn" id="mark-read">Mark all read</button>
+            </div>
+
+            <div class="notification-list" id="notif-list">
+                <!-- Items injected via JS -->
+                <div class="empty-state">
+                    <i class="fa-regular fa-bell-slash"></i>
+                    <p>No notifications yet.</p>
+                </div>
+            </div>
+
+        <!-- Simulation Panel (To demonstrate UI) -->
+            <div class="simulation-panel">
+                <div class="sim-info">
+                    <span class="sim-title">System Connection</span>
+                    <span class="sim-status">Active / Monitoring</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Settings Modal -->
+        <div class="modal-overlay" id="settings-modal">
+            <div class="modal">
+                <h3 class="modal-title">Settings</h3>
+                <div class="input-group">
+                    <label>Registered Number</label>
+                    <input type="number" id="settings-phone-input">
+                </div>
+                <div class="modal-actions">
+                    <button class="btn" id="save-settings">Update Number</button>
+                    <button class="btn btn-danger" id="reset-data">Reset All Data</button>
+                    <button class="btn btn-secondary" id="close-settings">Close</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Toast Notification -->
+        <div class="toast" id="toast">
+            <i class="fa-solid fa-circle-info"></i>
+            <span id="toast-msg">Message</span>
+        </div>
+
+    </div>
+
+    <!-- Custom JS -->
+    <script src="script.js"></script>
+</body>
+</html>
