@@ -2,8 +2,8 @@
 from gpiozero import MotionSensor
 from time import sleep
 import RPi.GPIO as GPIO
-import TwilioIntegration
-
+import Pushover
+import Weight
 
 
 
@@ -20,21 +20,25 @@ motionSensor = MotionSensor(sensorpin)
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(ledpin,GPIO.OUT)
-phoneNumber = input(print("Please enter your number, include your country code, eg +15558269383:")) 
-TwilioIntegration.text(phoneNumber)
-             
+Weight.start()
+print("start done")
 
 try:
     #detect motion
     while(True):
-        if(motionSensor.motion_detected):
+        hasWeight = Weight.weigh()
+       
+        if(motionSensor.motion_detected and hasWeight):
+           
+            Pushover.run()
             print("Package in mailbox.")
             GPIO.output(ledpin,GPIO.HIGH)
+            sleep(60)
             #sends text to SMS (set this up after friday)
            
         else:
             GPIO.output(ledpin,GPIO.LOW)
-
+           
         sleep(0.1)
 except KeyboardInterrupt:  #CTRL-C
     print("Stopping Program.")
